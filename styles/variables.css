@@ -1,0 +1,49 @@
+/* =========================
+   BASE (CINEMATIC DEFAULT)
+========================= */
+:root {
+  --bg-main: #080809;
+  --bg-muted: #101012;
+
+  --text-primary: #f5f5f5;
+  --text-muted: rgba(245, 245, 245, 0.6);
+
+  --accent: #c2a46d;
+  --highlight-warm: rgba(194, 164, 109, 0.25);
+
+  /* Typography (we’ll load fonts later) */
+  --font-title: serif;
+  --font-body: sans-serif;
+
+  /* Atmosphere */
+  --grain-opacity: 0.05;
+}
+
+/* =========================
+   LOVE THEME
+========================= */
+body.theme-love {
+  --bg-main: #0c0809;
+  --bg-muted: #140c0f;
+
+  --text-primary: #fff5f7;
+  --text-muted: rgba(255, 245, 247, 0.65);
+
+  --accent: #ff8fa3;
+  --highlight-warm: rgba(255, 143, 163, 0.35);
+}
+
+/* =========================
+   PHONK THEME
+========================= */
+body.theme-phonk {
+  --bg-main: #050507;
+  --bg-muted: #0a0a12;
+
+  --text-primary: #f1f0ff;
+  --text-muted: rgba(241, 240, 255, 0.6);
+
+  --accent: #8b5cf6;
+  --highlight-warm: rgba(139, 92, 246, 0.4);
+}
+

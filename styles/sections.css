@@ -1,0 +1,510 @@
+section {
+  width: 100%;
+  position: relative;
+}
+
+
+.hero {
+  height: 100vh;
+  padding: 0 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-family: var(--font-title);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 1;
+  margin: 0;
+  transition: text-shadow 0.8s ease;
+}
+
+.hero h1:hover {
+  text-shadow:
+    0 0 20px rgba(194, 164, 109, 0.25),
+    0 0 40px rgba(194, 164, 109, 0.15);
+}
+
+.hero h1,
+.contact h2 {
+  text-shadow:
+    0 0 30px var(--highlight-warm);
+}
+
+.hero p {
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.4;
+}
+
+.reel video {
+  transition: transform 1.2s ease;
+}
+
+.reel:hover video {
+  transform: scale(1.03);
+}
+
+
+
+.projects {
+  padding: 25vh 8vw;
+}
+
+.project h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin: 0;
+}
+
+.project p {
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+.project video {
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+video {
+  filter: contrast(1.05) saturate(1.02);
+}
+
+
+.about {
+  padding: 30vh 8vw;
+}
+
+.about p {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.3;
+  max-width: 720px;
+}
+
+
+.contact {
+  padding: 30vh 8vw;
+}
+
+.contact h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin: 0;
+}
+
+.contact a {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--accent);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.contact .email {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--accent);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.socials {
+  margin-top: 4rem;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.socials a {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.socials a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.4s ease;
+}
+
+.socials a:hover {
+  color: var(--text-primary);
+}
+
+.socials a:hover::after {
+  width: 100%;
+}
+
+
+
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 45%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: lightSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes lightSweep {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+/* Hero status indicator */
+.status-indicator {
+  position: absolute;
+  top: 4vh;
+  right: 6vw;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.status-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.status-role {
+  color: var(--text-primary);
+}
+
+.status-mode {
+  opacity: 0.7;
+}
+
+/* Status dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Busy state */
+.status-dot.busy {
+  background: #ff6b6b;
+  box-shadow: 0 0 0 rgba(255, 107, 107, 0.6);
+  animation: pulseBusy 2s infinite;
+}
+
+/* Available state */
+.status-dot.available {
+  background: #6bffb3;
+  box-shadow: 0 0 0 rgba(107, 255, 179, 0.6);
+  animation: pulseAvailable 2s infinite;
+}
+
+@keyframes pulseBusy {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 107, 107, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+  }
+}
+
+@keyframes pulseAvailable {
+  0% {
+    box-shadow: 0 0 0 0 rgba(107, 255, 179, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(107, 255, 179, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(107, 255, 179, 0);
+  }
+}
+
+.status-dot.playing {
+  background: #6bffb3;
+  box-shadow: 0 0 0 rgba(107, 255, 179, 0.6);
+  animation: pulseAvailable 2s infinite;
+}
+
+/* Cooking state */
+body.cooking .status-dot {
+  background: #ff9f1c;
+  box-shadow: 0 0 12px rgba(255, 159, 28, 0.6);
+  animation: pulseCooking 1.6s infinite;
+}
+
+@keyframes pulseCooking {
+  0% { box-shadow: 0 0 0 0 rgba(255,159,28,.6); }
+  70% { box-shadow: 0 0 0 10px rgba(255,159,28,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,159,28,0); }
+}
+
+/* Album art */
+.status-art-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.status-art {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  margin-right: 0.6rem;
+  object-fit: cover;
+  filter: saturate(1.1) contrast(1.05);
+  box-shadow:
+    0 0 12px rgba(107, 255, 179, 0.35),
+    0 0 30px rgba(107, 255, 179, 0.15);
+}
+
+
+.focus-section {
+  filter: blur(0px);
+  opacity: 1;
+  transition:
+    filter 1.2s ease,
+    opacity 1.2s ease;
+}
+
+.focus-section.is-blurred {
+  filter: blur(6px);
+  opacity: 0.7;
+}
+
+
+.chapter {
+  display: block;
+  margin-bottom: 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.chapter::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin-top: 1rem;
+  background: var(--text-muted);
+  opacity: 0.3;
+}
+
+
+
+.reel-split {
+  min-height: 100vh;
+  padding: 20vh 8vw;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+.reel-text h2 {
+  font-family: var(--font-title);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin: 1.5rem 0;
+}
+
+.reel-text h2 span {
+  display: block;
+  font-size: 0.65em;
+  color: var(--text-muted);
+}
+
+
+.reel-text p {
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.reel-media {
+  position: relative;
+  height: 70vh;
+  transform: translateY(40px);
+}
+
+.reel-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: contrast(1.1) saturate(1.05);
+}
+
+.reel-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+ border: 1px solid rgba(255, 255, 255, 0.12);
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+.reel-strip {
+  padding: 20vh 0;
+}
+
+.reel-strip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 45vh;
+}
+
+.reel-frame {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 8vw;
+  align-items: center;
+  padding: 0 8vw;
+  opacity: 0.4;
+  transition: opacity 0.6s ease;
+}
+
+.reel-frame.is-active {
+  opacity: 1;
+}
+
+/* Cinematic light bleed */
+.reel-frame::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 220, 180, 0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.reel-frame.is-active::after {
+  opacity: 1;
+}
+
+.reel-info h3 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  margin: 1.5rem 0;
+}
+
+.reel-info p {
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+.reel-frame video {
+  width: 100%;
+  height: 65vh;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.reel-frame:nth-child(even) {
+  grid-template-columns: 1.4fr 1fr;
+}
+
+.reel-frame:nth-child(even) .reel-info {
+  order: 2;
+}
+
+.reel-frame {
+  opacity: 0.25;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reel-frame.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reel-frame.is-active video {
+  filter: contrast(1.1) saturate(1.05);
+}
+
+/* Tooltip */
+.status-dot[data-tooltip] {
+  position: relative;
+}
+
+.status-dot[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.status-dot[data-tooltip]:hover::after {
+  opacity: 1;
+}

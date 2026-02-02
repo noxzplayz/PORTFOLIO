@@ -1,0 +1,220 @@
+@import "../styles/variables.css";
+@import "../styles/sections.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  transition:
+    background 1.2s ease,
+    color 1.2s ease;
+}
+
+p,
+span,
+.chapter {
+  color: var(--text-muted);
+}
+
+/* Film grain layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('/grain.png');
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Cinematic color grade */
+body {
+  filter:
+    contrast(1.08)
+    saturate(1.05);
+}
+
+
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+
+/* Editorial cursor */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(245, 245, 245, 0.8);
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate3d(-50%, -50%, 0);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background 0.25s ease;
+}
+
+.cursor.is-active {
+  width: 36px;
+  height: 36px;
+  background: rgba(194, 164, 109, 0.25);
+}
+
+
+a:hover ~ .cursor,
+video:hover ~ .cursor {
+  width: 32px;
+  height: 32px;
+  background: rgba(194, 164, 109, 0.25);
+}
+
+
+/* Default: cinematic cursor */
+body {
+  cursor: none;
+}
+
+/* Contact section: restore native cursor */
+body.show-native-cursor {
+  cursor: auto;
+}
+
+/* Hide custom cursor when native cursor is active */
+body.show-native-cursor .cursor {
+  opacity: 0;
+}
+
+a,
+.status-dot.playing,
+.contact a {
+  color: var(--theme-accent);
+}
+
+/* =========================
+   THEME SYMBOLS
+========================= */
+#theme-symbols {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* LOVE — hearts */
+body.theme-love #theme-symbols::before {
+  content: "❤ ❤ ❤";
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  font-size: 4rem;
+  letter-spacing: 2rem;
+  color: rgba(255, 143, 163, 0.15);
+  animation: floatLove 12s ease-in-out infinite;
+  filter: blur(2px);
+}
+
+/* PHONK — crosses */
+body.theme-phonk #theme-symbols::before {
+  content: "✕ ✕ ✕";
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  font-size: 4rem;
+  letter-spacing: 2rem;
+  color: rgba(139, 92, 246, 0.18);
+  animation: pulsePhonk 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes floatLove {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulsePhonk {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; }
+}
+
+
+/* =========================
+   THEME PARTICLES OVERLAY
+========================= */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-size: 1.8rem;
+  opacity: 0.35;
+  animation: floatParticle linear infinite;
+}
+
+/* LOVE PARTICLES */
+.particles-love .particle::before {
+  content: "❤";
+  color: rgba(255, 143, 163, 0.8);
+}
+
+/* PHONK PARTICLES */
+.particles-phonk .particle::before {
+  content: "✕";
+  color: rgba(139, 92, 246, 0.85);
+}
+
+/* Random positioning + motion */
+.particle {
+  top: calc(100% * var(--y));
+  left: calc(100% * var(--x));
+  animation-duration: calc(12s + var(--d) * 8s);
+}
+
+/* Generate variation */
+.particle:nth-child(n) {
+  --x: calc(random() * 1);
+  --y: calc(random() * 1);
+  --d: calc(random() * 1);
+}
+
+/* Motion */
+@keyframes floatParticle {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: translateY(-120px);
+  }
+}
+
+/* Mobile safety */
+@media (max-width: 768px) {
+  .particles {
+    opacity: 0.4;
+  }
+
+  .status-indicator {
+    font-size: 0.65rem;
+  }
+}
