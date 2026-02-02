@@ -6,7 +6,12 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function Reel() {
+type ReelData = {
+  src: string
+  title: string
+}
+
+export default function Reel({ reel }: { reel: ReelData }) {
   const textRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
