@@ -159,7 +159,7 @@ const Hero: () => React.ReactElement = () => {
           )}
           {!nowPlaying.isPlaying && !waka.cooking && (
             <img
-              src="/exam icon.png"
+              src="/study.png"
               alt="Exam icon"
               className="status-art"
             />
