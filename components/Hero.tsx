@@ -143,6 +143,12 @@ const Hero: () => React.ReactElement = () => {
         onClick={handleStatusClick}
         role="button"
       >
+        <span
+          className={`status-dot ${nowPlaying.isPlaying ? 'playing' : 'busy'
+            }`}
+          data-tooltip={nowPlaying.isPlaying ? 'Listening on Spotify' : ''}
+        />
+
         <div className="status-art-wrapper">
           {nowPlaying.isPlaying && nowPlaying.image && (
             <img
@@ -151,11 +157,13 @@ const Hero: () => React.ReactElement = () => {
               className="status-art"
             />
           )}
-          <span
-            className={`status-dot ${nowPlaying.isPlaying ? 'playing' : 'busy'
-              }`}
-            data-tooltip={nowPlaying.isPlaying ? 'Listening on Spotify' : ''}
-          />
+          {!nowPlaying.isPlaying && !waka.cooking && (
+            <img
+              src="/exam icon.png"
+              alt="Exam icon"
+              className="status-art"
+            />
+          )}
         </div>
 
         <div className="status-text">
