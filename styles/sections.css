@@ -11,6 +11,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .hero h1 {
@@ -18,7 +19,7 @@ section {
   font-size: clamp(2.2rem, 8vw, 4rem);
   line-height: 1.1;
   margin: 0;
-  transition: text-shadow 0.8s ease;
+  transition: text-shadow 0.8s ease, opacity 0.6s ease;
 }
 
 /* Mobile Hero */
@@ -165,6 +166,155 @@ section {
   pointer-events: none;
   background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.18) 100%);
   opacity: 0.28;
+}
+
+/* CINEMATIC HERO REDESIGN — Large screens (1025px+) */
+@media (min-width: 1025px) {
+  .hero {
+    height: 100vh;
+    padding: 0 12vw;
+    display: block;
+    position: relative;
+  }
+
+  /* Compose title and meta as a positioned block, left-of-center */
+  .hero h1 {
+    position: absolute;
+    left: 22%;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: clamp(3.2rem, 6.5vw, 6rem);
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: 0.02em;
+    color: rgba(245, 240, 235, 0.98);
+    text-shadow: 0 0 30px var(--highlight-warm);
+    z-index: 6;
+    max-width: 55%;
+  }
+
+  .hero-meta {
+    position: absolute;
+    left: 22%;
+    top: calc(40% + 6.5rem);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-role {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: var(--font-sans);
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.82);
+    font-family: var(--font-sans);
+  }
+
+  /* Diagonal shadow wedge — shaped negative space that sculpts the right side */
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -12%;
+    top: -10%;
+    width: 145%;
+    height: 125%;
+    background: rgba(0, 0, 0, 0.32);
+    pointer-events: none;
+    z-index: 3;
+    /* diagonal clip-path creates a feathered curtain edge */
+    clip-path: polygon(28% 0%, 100% 0%, 100% 100%, 35% 100%);
+    filter: blur(32px);
+    mix-blend-mode: multiply;
+    opacity: 0.92;
+    will-change: opacity;
+    animation: cinematic-breath 11s ease-in-out infinite;
+  }
+
+  /* Diegetic status indicator — subtle production note on top-right */
+  .status-indicator {
+    position: absolute;
+    top: 6%;
+    right: 8%;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 9px;
+    background: rgba(10, 10, 10, 0.22);
+    color: rgba(255, 255, 255, 0.58);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    border-left: 2px solid rgba(255, 255, 255, 0.04);
+    border-radius: 2px;
+    cursor: default;
+    pointer-events: auto;
+    transition: opacity 0.4s ease, color 0.4s ease;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+    display: inline-block;
+  }
+
+  .status-dot.playing {
+    background: rgba(194, 164, 109, 0.88);
+    box-shadow: 0 0 5px rgba(194, 164, 109, 0.18), inset 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Spotlight layer — subtle mouse-follow glow */
+  .hero-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    mix-blend-mode: screen;
+    opacity: 0.06;
+  }
+
+  /* Breathing animation — subtle, intentional pulsing of the shadow wedge */
+  @keyframes cinematic-breath {
+    0% {
+      transform: translateY(0) scaleX(1.001);
+      opacity: 0.91;
+    }
+    50% {
+      transform: translateY(3px) scaleX(1.003);
+      opacity: 0.93;
+    }
+    100% {
+      transform: translateY(0) scaleX(1.001);
+      opacity: 0.91;
+    }
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .hero::after {
+      animation: none;
+      transform: none;
+    }
+    .hero h1,
+    .hero-meta {
+      transition: none;
+    }
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
